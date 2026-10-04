@@ -7,7 +7,9 @@ import gradio as gr
 IMAGE_SIZE = 128
 THRESHOLD = 0.50
 MODEL_PATH = Path(__file__).with_name("best_final_model.keras")
-model = tf.keras.models.load_model(MODEL_PATH)
+# Only the trained network is required for prediction.
+# Training optimizer information is not loaded in the deployed application.
+model = tf.keras.models.load_model(MODEL_PATH, compile=False)
 
 def predict_xray(image):
     if image is None:
